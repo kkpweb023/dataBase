@@ -4,7 +4,7 @@ const app = express()
 const port = process.env.PORT || 4000;
 require('./Database/config');
 const Products = require('./Database/ProductSchema');
-
+MONGO_URI="mongodb+srv://kkpweb023:KkpP831722@cluster0.a9anlpj.mongodb.net/?retryWrites=true&w=majority"
 
 const connectDB = async () => {
     try {
