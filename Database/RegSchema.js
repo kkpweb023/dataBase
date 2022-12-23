@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const autoIncr = require('mongoose-auto-increment')
-
 
 const RegSchema = new mongoose.Schema({
 
@@ -13,10 +11,5 @@ const RegSchema = new mongoose.Schema({
        
 });
 
-
-
-
-autoIncr.initialize(mongoose.connection);
-RegSchema.plugin(autoIncr.plugin,'students')
 
 module.exports = mongoose.model('register',RegSchema);
