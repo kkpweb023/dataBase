@@ -186,6 +186,8 @@ app.get('/search/:key', async (req,res)=>{
 app.get('/userRegister', async (req,res)=>{
     const allData = await User.findOne({});
 
+    console.log(allData)
+
     if(allData.length > 0){
         res.json(allData);
     }else{
