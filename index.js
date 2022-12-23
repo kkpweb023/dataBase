@@ -84,6 +84,64 @@ app.put('/changePass/:_id',jsonParser, async(req,res)=>{
 
 
 
+app.put('/upload/:_id',upload, async(req,res)=>{
+
+    let data = await User.updateOne(
+         {_id:req.params._id},{image:req.file.path}
+    );
+    res.send(data);
+
+})
+
+app.get('/:_id', async (req,res)=>{
+
+    const allData = await User.find({_id:req.params._id});
+    res.json(allData);
+})
+
+
+app.put('/remove/:_id',upload, async(req,res)=>{
+
+    let data = await User.updateOne(
+         {_id:req.params._id},{image:""}
+    );
+    res.send(data);
+
+})
+
+
+
+
+app.delete('/:email', async (req,res)=>{
+
+    const user = await User.findOne({email:req.params.email});
+    const data = await User.deleteOne({email:req.params.email});
+
+   if(user){
+         res.send(data);
+   }else{
+      res.send("Already deleted");
+   }
+})
+
+
+
+
+
+
+///////////////List/////////////
+
+
+
+app.post('/add-Product',jsonParser, async (req,res)=>{
+
+    let data = new Products(req.body);
+    let products = await data.save();
+    res.send(products)
+
+})
+
+
 
 app.get('/list-Product',async (req,res)=>{
 
@@ -99,17 +157,56 @@ app.get('/list-Product',async (req,res)=>{
 
 
 
-app.delete('/:email', async (req,res)=>{
 
-    const user = await User.findOne({email:req.params.email});
-    const data = await User.deleteOne({email:req.params.email});
 
-   if(user){
-         res.send(data);
-   }else{
-      res.send("Already deleted");
-   }
+app.get('/update-Product/:_id',async (req,res)=>{
+
+    let data = await Products.find({_id:req.params._id});
+
+    if(data.length > 0){
+        res.send(data)
+    }else{
+        res.send("No data found");
+    }
+ 
 })
+
+app.put('/update-Product/:_id',jsonParser,async (req,res)=>{
+
+    let result = await Products.updateOne(
+         {_id:req.params._id},
+         {$set:req.body}
+    )
+    res.send(result);
+})
+
+
+app.delete('/delete-Product/:_id',async (req,res)=>{
+    
+    let data = await Products.deleteOne({_id:req.params._id});
+    res.send(data);
+     
+
+})
+
+
+app.get('/search/:key', async (req,res)=>{
+
+    const data = await Products.find({
+
+            '$or':[
+
+                {name: { $regex: req.params.key}},
+                {price: { $regex: req.params.key}},
+                {category: { $regex: req.params.key}},
+                {company: { $regex: req.params.key}},
+            ]
+        });
+    res.send(data);
+})
+
+
+
 
 
 
