@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 4000;
 require('./Database/config');
+const cors = require('cors');
+app.use(cors());
 const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
