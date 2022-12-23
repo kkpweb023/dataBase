@@ -3,9 +3,10 @@ const app = express()
 const port = process.env.PORT || 4000;
 require('./Database/config');
 const Products = require('./Database/ProductSchema');
+const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
-const User = require('./Database/RegSchema');
+
 
 
 
