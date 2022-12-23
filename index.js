@@ -10,7 +10,6 @@ let jsonParser = bodyParser.json();
 
 app.post('/register',jsonParser, async (req, res) => {
 
-
     const user = await User.findOne({email:req.body.email});
     if(user){
         res.send("Email already registered");
