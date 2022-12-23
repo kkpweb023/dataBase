@@ -40,6 +40,19 @@ app.post('/register', jsonParser, async (req, res) => {
 })
 
 
+app.post('/login', jsonParser, async (req, res) => {
+
+    if (req.body.password && req.body.email) {
+        const user = await User.findOne(req.body).select('-password');
+        if (user) {
+            res.send(user);
+        } else {
+            res.send("Please signup");
+        }
+    } else {
+        res.send("Enter correct Email and Password");
+    }
+})
 
 
 
