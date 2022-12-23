@@ -8,10 +8,7 @@ let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
 
 
-
-
-
-app.post('/register', jsonParser, async (req, res) => {
+app.post('/register',jsonParser, async (req, res) => {
 
 
     const user = await User.findOne({email:req.body.email});
@@ -29,8 +26,6 @@ app.post('/register', jsonParser, async (req, res) => {
             email: req.body.email,
             password: req.body.password,
             image:"",
-
-
         })
         let user = await data.save();
         user = user.toObject();
