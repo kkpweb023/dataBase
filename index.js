@@ -84,33 +84,6 @@ app.put('/changePass/:_id',jsonParser, async(req,res)=>{
 
 
 
-app.put('/upload/:_id',upload, async(req,res)=>{
-
-    let data = await User.updateOne(
-         {_id:req.params._id},{image:req.file.path}
-    );
-    res.send(data);
-
-})
-
-app.get('/:_id', async (req,res)=>{
-
-    const allData = await User.find({_id:req.params._id});
-    res.json(allData);
-})
-
-
-app.put('/remove/:_id',upload, async(req,res)=>{
-
-    let data = await User.updateOne(
-         {_id:req.params._id},{image:""}
-    );
-    res.send(data);
-
-})
-
-
-
 
 app.delete('/:email', async (req,res)=>{
 
