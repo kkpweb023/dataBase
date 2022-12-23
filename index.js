@@ -52,7 +52,35 @@ app.post('/login', jsonParser, async (req, res) => {
 
 
 
+app.get('/getID/:email', async (req,res)=>{
 
+    const allData = await User.findOne({email:req.params.email});
+    
+    if(allData){
+        res.json(allData._id);
+    }else{
+        res.json("Invalid Email Id")
+    }
+})
+
+
+app.put('/forgotPass/:_id',jsonParser, async(req,res)=>{
+
+    let data = await User.updateOne(
+         {_id:req.params._id},{$set:req.body}
+    );
+    res.send(data);
+})
+
+
+
+app.put('/changePass/:_id',jsonParser, async(req,res)=>{
+
+    let data = await User.updateOne(
+         {_id:req.params._id},{$set:req.body}
+    );
+    res.send(data);
+})
 
 
 
@@ -68,6 +96,26 @@ app.get('/list-Product',async (req,res)=>{
     }
  
 })
+
+
+
+app.delete('/:email', async (req,res)=>{
+
+    const user = await User.findOne({email:req.params.email});
+    const data = await User.deleteOne({email:req.params.email});
+
+   if(user){
+         res.send(data);
+   }else{
+      res.send("Already deleted");
+   }
+})
+
+
+
+
+
+
 
 
 
