@@ -129,8 +129,6 @@ app.get('/list-Product',async (req,res)=>{
 
 
 
-
-
 app.get('/update-Product/:_id',async (req,res)=>{
 
     let data = await Products.find({_id:req.params._id});
@@ -185,10 +183,15 @@ app.get('/search/:key', async (req,res)=>{
 ////////////extra == register candidate list
 
 
-app.get('/UserRegister', async (req,res)=>{
-
+app.get('/userRegister', async (req,res)=>{
     const allData = await User.findOne({});
-    res.json(allData);
+
+    if(allData.length > 0){
+        res.json(allData);
+    }else{
+        res.send("No data found");
+    }
+    
 })
 
 
