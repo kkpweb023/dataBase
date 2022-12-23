@@ -40,7 +40,7 @@ app.post('/register', jsonParser, async (req, res) => {
 })
 
 
-app.post('/login', jsonParser, async (req, res) => {
+app.post('https://wild-puce-dove-hose.cyclic.app/login', jsonParser, async (req, res) => {
 
     if (req.body.password && req.body.email) {
         const user = await User.findOne(req.body).select('-password');
