@@ -182,6 +182,18 @@ app.get('/search/:key', async (req,res)=>{
 
 
 
+////////////extra == register candidate list
+
+
+app.get('/', async (req,res)=>{
+    
+    const allData = await User.findOne({});
+    res.json(allData._id);
+})
+
+
+
+
 
 
 
