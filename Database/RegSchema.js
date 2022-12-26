@@ -7,7 +7,7 @@ const RegSchema = new mongoose.Schema({
        phone:Number,
        email:String,
        password:String,
-       image:String 
+       image:String
        
 });
 
