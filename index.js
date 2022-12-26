@@ -30,8 +30,15 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-app.use(cors());
+app.use(cors({credentials: true, origin: '*'}));
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+    next();
+
+});
 
 
 
@@ -164,8 +171,6 @@ app.get('/list-Product', async (req, res) => {
 
     if (data.length > 0) {
         res.send(data)
-        req.headers['Access-Control-Allow-Origin'] = "*"
-
     } else {
         res.send("No data found");
     }
