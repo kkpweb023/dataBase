@@ -164,7 +164,7 @@ app.get('/list-Product', async (req, res) => {
 
     if (data.length > 0) {
         res.send(data)
-        req.headers['access-control-allow-origin'] = "*"
+        req.headers['Access-Control-Allow-Origin'] = "*"
 
     } else {
         res.send("No data found");
