@@ -17,8 +17,6 @@ cloudinary.config({
     secure: true
 });
 
-app.use(cors());
-
 const upload = multer({
 
     storage: multer.diskStorage({
@@ -32,6 +30,10 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
+app.use(cors());
+
+
+
 
 
 
@@ -162,6 +164,8 @@ app.get('/list-Product', async (req, res) => {
 
     if (data.length > 0) {
         res.send(data)
+        req.headers['access-control-allow-origin'] = "*"
+
     } else {
         res.send("No data found");
     }
