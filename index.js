@@ -1,13 +1,15 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
+app.use(cors());
 const port = process.env.PORT || 4000;
 require('./Database/config');
-const cors = require('cors');
 const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
 const multer = require('multer');
+
 
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -30,7 +32,7 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-app.use(cors({credentials: true, origin: '*'}));
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
