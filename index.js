@@ -3,11 +3,28 @@ const app = express()
 const port = process.env.PORT || 4000;
 require('./Database/config');
 const cors = require('cors');
-app.use(cors());
+const multer = require('multer');
 const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
+app.use(cors());
+
+
+
+const upload = multer({
+
+    storage:multer.diskStorage({ 
+        destination:function(req,file,cb){
+            cb(null,"uploads");
+        },
+        filename:function(req,file,cb){
+            cb(null,file.originalname);
+        }
+    })
+}).single("user-image");
+
+app.use('/uploads',express.static('uploads'));
 
 
 
@@ -98,7 +115,33 @@ app.delete('/:email', async (req,res)=>{
    }
 })
 
+/////////////Images/////////////
 
+
+app.put('/upload/:_id',upload, async(req,res)=>{
+
+   let data = await User.updateOne(
+        {_id:req.params._id},{image:req.file.path}
+   );
+   res.send(data);
+
+})
+
+app.get('/:_id', async (req,res)=>{
+
+   const allData = await User.find({_id:req.params._id});
+   res.json(allData);
+})
+
+
+app.put('/remove/:_id',upload, async(req,res)=>{
+
+   let data = await User.updateOne(
+        {_id:req.params._id},{image:""}
+   );
+   res.send(data);
+
+})
 
 
 ///////////////List/////////////
