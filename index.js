@@ -8,9 +8,9 @@ const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
-const multer = require('multer');
+//const multer = require('multer');
 
-
+/*
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'dp2exjpd5',
@@ -32,18 +32,7 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
-    next();
-
-});
-
-
-
+*/
 
 
 app.post('/register', jsonParser, async (req, res) => {
@@ -127,7 +116,7 @@ app.delete('/:email', async (req, res) => {
 
 /////////////Images/////////////
 
-app.put('/upload/:_id', upload, async (req, res) => {
+app.put('/upload/:_id', async (req, res) => {
 
     let result = await cloudinary.uploader.upload(req.file.path);
 
