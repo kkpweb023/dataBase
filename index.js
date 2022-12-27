@@ -8,9 +8,9 @@ const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
-//const multer = require('multer');
+const multer = require('multer');
 
-/*
+
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'dp2exjpd5',
@@ -32,7 +32,7 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-*/
+
 
 
 app.post('/register', jsonParser, async (req, res) => {
@@ -115,17 +115,15 @@ app.delete('/:email', async (req, res) => {
 })
 
 /////////////Images/////////////
-/*
-app.put('/upload/:_id', async (req, res) => {
+
+app.put('/upload/:_id',upload, async (req, res) => {
 
     let result = await cloudinary.uploader.upload(req.file.path);
 
     let data = await User.updateOne(
-        { _id: req.params._id }, { image: result.url }
+        { _id: req.params._id }, { image:result.url }
     );
     res.send(data)
-
-
 })
 
 
@@ -143,7 +141,7 @@ app.put('/remove/:_id', async (req, res) => {
     );
     res.send(data);
 
-})*/
+})
 
 
 ///////////////List/////////////
