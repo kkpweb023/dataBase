@@ -115,7 +115,7 @@ app.delete('/:email', async (req, res) => {
 })
 
 /////////////Images/////////////
-
+/*
 app.put('/upload/:_id', async (req, res) => {
 
     let result = await cloudinary.uploader.upload(req.file.path);
@@ -143,7 +143,7 @@ app.put('/remove/:_id', async (req, res) => {
     );
     res.send(data);
 
-})
+})*/
 
 
 ///////////////List/////////////
