@@ -128,7 +128,6 @@ app.put('/upload/:_id', upload, async (req, res) => {
 
 
 app.get('/:_id', async (req, res) => {
-
     const allData = await User.find({ _id: req.params._id });
     res.json(allData);
 })
