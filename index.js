@@ -10,10 +10,10 @@ let jsonParser = bodyParser.json();
 const multer = require('multer');
 
 
-app.use(cors({
-    origin:"http://localhost:3000",
-    methods:['GET','POST','PUT','DELETE']
-})
+    app.use(cors({
+        origin:"http://localhost:3000" || 'https://kkpweb023.github.io',
+        methods:['GET','POST','PUT','DELETE']
+    })
 );
 
 
