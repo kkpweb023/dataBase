@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors');
 const app = express()
-app.use(cors());
 const port = process.env.PORT || 4000;
 require('./Database/config');
 const Products = require('./Database/ProductSchema');
@@ -11,6 +10,13 @@ let jsonParser = bodyParser.json();
 const multer = require('multer');
 
 
+app.use(cors({
+    origin:"http://localhost:3000",
+    methods:['GET','POST','PUT','DELETE']
+})
+);
+
+
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'dp2exjpd5',
@@ -18,6 +24,9 @@ cloudinary.config({
     api_secret: 'SgGAXDguhnjO_hLofSS7ztOZfyY',
     secure: true
 });
+
+
+
 
 
 const upload = multer({
