@@ -10,8 +10,7 @@ let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
 const multer = require('multer');
 
-
-
+/*
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'dp2exjpd5',
@@ -20,7 +19,7 @@ cloudinary.config({
     secure: true
 });
 
-/*
+
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
@@ -33,8 +32,8 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-*/
 
+*/
 
 app.post('/register', jsonParser, async (req, res) => {
 
