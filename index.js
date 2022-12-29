@@ -1,14 +1,14 @@
 const express = require('express')
 const cors = require('cors');
-app.use(cors());
 const app = express()
+app.use(cors());
 const port = process.env.PORT || 4000;
 require('./Database/config');
 const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
-const multer = require('multer');
+//const multer = require('multer');
 
 /*
 const cloudinary = require('cloudinary').v2;
