@@ -120,7 +120,7 @@ app.put('/upload/:_id', upload, async (req, res) => {
 
     let result = await cloudinary.uploader.upload(req.file.path);
     let data = await User.updateOne(
-        { _id: req.params._id }, { image: result.url }
+        { _id: req.params._id }, { image: req.file.path }
     );
     res.send(data)
 
