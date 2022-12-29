@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+app.use(cors());
 const app = express()
 const port = process.env.PORT || 4000;
 require('./Database/config');
@@ -8,14 +9,6 @@ const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
 const multer = require('multer');
-
-
-    app.use(cors({
-        origin:'https://kkpweb023.github.io',
-        methods:['GET','POST','PUT','DELETE']
-    })
-);
-
 
 
 
@@ -27,7 +20,7 @@ cloudinary.config({
     secure: true
 });
 
-
+/*
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
@@ -40,7 +33,7 @@ const upload = multer({
 }).single("photo");
 
 app.use('/uploads', express.static('uploads'));
-
+*/
 
 
 app.post('/register', jsonParser, async (req, res) => {
@@ -123,7 +116,7 @@ app.delete('/:email', async (req, res) => {
 })
 
 /////////////Images/////////////
-
+/*
 app.put('/upload/:_id', upload, async (req, res) => {
 
     let result = await cloudinary.uploader.upload(req.file.path);
@@ -151,7 +144,7 @@ app.put('/remove/:_id', async (req, res) => {
 
 })
 
-
+*/
 
 ///////////////List/////////////
 
