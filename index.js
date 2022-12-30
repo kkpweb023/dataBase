@@ -8,9 +8,10 @@ const Products = require('./Database/ProductSchema');
 const User = require('./Database/RegSchema');
 let bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
+
+
+/*
 const multer = require('multer');
-
-
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'dp2exjpd5',
@@ -18,7 +19,6 @@ cloudinary.config({
     api_secret: 'SgGAXDguhnjO_hLofSS7ztOZfyY',
     secure: true
 });
-
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -30,9 +30,8 @@ const upload = multer({
         }
     })
 }).single("photo");
-
 app.use('/uploads', express.static('uploads'));
-
+*/
 
 
 app.post('/register', jsonParser, async (req, res) => {
@@ -116,71 +115,57 @@ app.delete('/:email', async (req, res) => {
 
 /////////////Images/////////////
 
-app.put('/upload/:_id', upload, async (req, res) => {
+/*
 
+app.put('/upload/:_id', upload, async (req, res) => {
     let result = await cloudinary.uploader.upload(req.file.path);
     let data = await User.updateOne(
         { _id: req.params._id }, { image: result.url }
     );
     res.send(data)
-
 })
-
 
 app.get('/:_id', async (req, res) => {
     const allData = await User.find({ _id: req.params._id });
     res.json(allData);
 })
 
-
 app.put('/remove/:_id', async (req, res) => {
-
     let data = await User.updateOne(
         { _id: req.params._id }, { image: "" }
     );
     res.send(data);
-
 })
-
-
+*/
 
 ///////////////List/////////////
+
 
 app.post('/add-Product', jsonParser, async (req, res) => {
     let data = new Products(req.body);
     let products = await data.save();
     res.send(products)
-
 })
-
 
 app.get('/list-Product', async (req, res) => {
-
     let data = await Products.find({});
-
     if (data.length > 0) {
         res.send(data)
     } else {
         res.send("No data found");
     }
-
 })
 
-
 app.get('/update-Product/:_id', async (req, res) => {
-
     let data = await Products.find({ _id: req.params._id });
-
     if (data.length > 0) {
         res.send(data)
     } else {
         res.send("No data found");
     }
-
 })
 
 app.put('/update-Product/:_id', jsonParser, async (req, res) => {
-
     let result = await Products.updateOne(
         { _id: req.params._id },
         { $set: req.body }
@@ -192,14 +177,11 @@ app.delete('/delete-Product/:_id', async (req, res) => {
 
     let data = await Products.deleteOne({ _id: req.params._id });
     res.send(data);
-
-
 })
 
 app.get('/search/:key', async (req, res) => {
 
     const data = await Products.find({
-
         '$or': [
             { name: { $regex: req.params.key } },
             { price: { $regex: req.params.key } },
