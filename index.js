@@ -92,6 +92,12 @@ app.get('/getID/:email', async (req, res) => {
     const allData = await User.findOne({ email: req.params.email });
 
     if (allData) {
+        jwt.sign({allData},jwtKey,{expiresIn:'3h'},(err,token)=>{
+            if(err){
+                res.send('something went wrong please try later....')
+            }
+            res.send({allData,auth:token});
+        })
         res.json(allData._id);
     } else {
         res.json("Invalid Email Id")
