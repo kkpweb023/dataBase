@@ -87,7 +87,7 @@ app.post('/login', jsonParser, async (req, res) => {
     }
 })
 
-app.get('/getID/:email',VerifyToken, async (req, res) => {
+app.get('/getID/:email', async (req, res) => {
 
     const allData = await User.findOne({ email: req.params.email });
 
