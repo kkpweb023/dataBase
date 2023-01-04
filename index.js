@@ -166,7 +166,7 @@ app.get('/list-Product',VerifyToken, async (req, res) => {
     if (data.length > 0) {
         res.send(data)
     } else {
-        res.send("No data found",data);
+        res.send(data);
        
     }
 })
